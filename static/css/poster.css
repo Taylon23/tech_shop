@@ -1,0 +1,80 @@
+.container-poster {
+  padding-bottom: 10px;
+  padding-left: 10px;
+  display: grid;
+  align-items: center;
+  place-items: center;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.poster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #bfbeb8;
+  border-radius: 10px;
+  max-width: 300px;
+  min-height: 470px;
+  transition: all 0.3s;
+}
+.poster:hover {
+  box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.1);
+}
+.poster img {
+  max-width: 100%;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 10px;
+}
+.info-produto {
+  padding: 5px 20px;
+}
+
+.poster h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.poster p {
+  margin-bottom: 5px;
+}
+.poster .preco {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+}
+.content-button-ver-detalhes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+}
+.button-ver-detalhes {
+  text-decoration: none;
+  padding: 15px 20px;
+  text-align: center;
+  color: #fff;
+  background-color: #0d0d0d;
+  width: 100%;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+.button-ver-detalhes:hover {
+  box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.1);
+  background-color: #171717;
+}
+
+@media (max-width: 768px) {
+  .container-poster {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    width: 100%;
+  }
+  .poster {
+    min-width: 300px;
+    min-height: 300px;
+  }
+}

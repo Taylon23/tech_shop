@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Home{% endblock %}
+{% block links_extras %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" href="{% static 'css/poster.css' %}" />
+{% endblock %} {% block container_page %}
+<div class="titulo-section">
+  <h1>Lorem ipsum dolor</h1>
+</div>
+<div class="container-poster">
+  {% for produto in produtos %}
+  <div class="poster">
+    <img src="{{ produto.imagem.url }}" alt="Imagem do Produto" />
+    <div class="info-produto">
+      <p class="titulo">{{ produto.titulo }}</p>
+      <p class="preco">R$ {{ produto.preco }}</p>
+      <p>Quantidade Disponível: {{ produto.quantidade }}</p>
+    </div>
+    <div class="content-button-ver-detalhes">
+      <a href="{% url 'detalhe-produto' produto.pk %}" class="button-ver-detalhes"
+        ><i class="fas fa-search"></i> Ver Detalhes</a
+      >
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

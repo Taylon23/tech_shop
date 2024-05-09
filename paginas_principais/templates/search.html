@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links_extras %}
+<link rel="stylesheet" href="{% static 'css/html.css' %}">
+<link rel="stylesheet" href="{% static 'css/poster.css' %}">
+{% endblock %}
+
+{% block container_page %}
+<div class="titulo-section">
+    <h2>Resultados da Pesquisa para "{{ query }}"</h2>
+</div>
+<div class="container-poster">
+    {% if produtos %}
+        {% for produto in produtos %}
+        <div class="poster">
+            <img src="{{ produto.imagem.url }}" alt="Imagem do Produto">
+            <div class="info-produto">
+                <p class="titulo">{{ produto.titulo }}</p>
+                <p class="preco">R$ {{ produto.preco }}</p>
+                <p>Quantidade Disponível: {{ produto.quantidade }}</p>
+                <a href="#"><i class="fas fa-search"></i> Ver Detalhes</a>
+            </div>
+        </div>
+        {% empty %}
+        <p>Nenhum produto encontrado.</p>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum resultado encontrado para "{{ query }}".</p>
+    {% endif %}
+</div>
+
+{% endblock %}

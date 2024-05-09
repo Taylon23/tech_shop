@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Home{% endblock %}
+{% block links_extras %}
+<link rel="stylesheet" href="{% static 'css/detalhe_produto.css' %}" />
+{% endblock %} {% block container_page %}
+<div class="container-produto">
+  <div class="produto">
+    <img src="{{ produto.imagem.url }}" alt="Imagem do Produto" />
+    <div class="info-produto">
+      <p class="titulo">{{ produto.titulo }}</p>
+      <p class="preco">R$ {{ produto.preco }}</p>
+      <p>Quantidade Disponível: {{ produto.quantidade }}</p>
+      <div class="content-button-ver-detalhes">
+        <a href="{% url 'detalhe-produto' produto.pk %}" class="button-ver-detalhes"
+          ><i class="fas fa-shopping-cart"></i> Comprar</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="descricao">
+    <h3>Descricao</h3>
+    <p>{{ produto.descricao }} </p>
+ </div>
+</div>
+{% endblock %}
