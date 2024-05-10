@@ -61,11 +61,21 @@
               <li>
                   <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
               </li>
-              <li>
+              <li class="list-menu">
                   <a href="#"><i class="fas fa-laptop"></i> Notebooks</a>
+                  <ul class="sub-menu-list">
+                    {% for marca in marca_notebook %}
+                    <a href="{% url 'search' %}?marca={{ marca }}"><li>{{ marca}}</li></a>
+                    {% endfor %}
+                  </ul>
               </li>
-              <li>
+              <li class="list-menu">
                   <a href="#"><i class="fas fa-shopping-cart"></i> Outros produtos</a>
+                  <ul class="sub-menu-list">
+                    {% for categoria in categorias_produtos %}
+                    <a href="{% url 'search' %}?categoria={{ categoria }}"><li>{{ categoria }}</li></a>
+                  {% endfor %}
+                  </ul>
               </li>
               <li>
                   <a href="#"><i class="fas fa-info-circle"></i> Sobre</a>

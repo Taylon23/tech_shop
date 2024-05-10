@@ -2,13 +2,24 @@
 {% load static %}
 
 {% block links_extras %}
-<link rel="stylesheet" href="{% static 'css/html.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/poster.css' %}">
 {% endblock %}
 
 {% block container_page %}
 <div class="titulo-section">
+    
+    {% if query and produtos %}
     <h2>Resultados da Pesquisa para "{{ query }}"</h2>
+    {% endif %}
+    {% if marca_query and produtos %}
+    <h2>Os melhores produtos "{{ marca_query }}"</h2>
+    {% endif %}
+    {% if categoria_query and produtos %}
+    <h2>Resultados da Pesquisa para "{{ categoria_query }}"</h2>
+    {% endif %}
+
+        
 </div>
 <div class="container-poster">
     {% if produtos %}
@@ -26,7 +37,15 @@
         <p>Nenhum produto encontrado.</p>
         {% endfor %}
     {% else %}
-        <p>Nenhum resultado encontrado para "{{ query }}".</p>
+    {% if query %}
+    <h2>Nenhum resultado encontrado para "{{ query }}"</h2>
+    {% endif %}
+    {% if marca_query %}
+    <h2>Nenhum resultado encontrado para "{{ marca_query }}"</h2>
+    {% endif %}
+    {% if categoria_query %}
+    <h2>Nenhum resultado encontrado para "{{ categoria_query }}"</h2>
+    {% endif %}
     {% endif %}
 </div>
 

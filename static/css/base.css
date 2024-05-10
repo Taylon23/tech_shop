@@ -90,6 +90,34 @@ body {
 .menu-topo li a:hover {
   color: #d7d7d7;
 }
+.sub-menu-list{
+  display: none;
+}
+.sub-menu-list a{
+  color: #0d0d0d !important;
+}
+
+.list-menu:hover > .sub-menu-list{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 200px;
+  text-transform: uppercase;
+  background-color: #fafafa;
+  color: #0d0d0d;
+  flex-wrap: wrap;
+  border: solid 1px #A6A6A6;
+  border-radius: 5px;
+}
+
+.sub-menu-list li{
+  padding: 10px;
+  border-bottom: solid 1px #A6A6A6;
+  transition: all .3s;
+}
+.sub-menu-list li:hover{
+  background-color: #eee;
+}
 .conteiner_main {
   min-height: 83%;
 }
@@ -212,5 +240,10 @@ body {
   /* Exibe o menu quando a classe "show" é aplicada */
   .menu-topo.show {
     display: flex;
+  }
+
+  .sub-menu-list{
+    left: 0;
+    width: 100% !important;
   }
 }
