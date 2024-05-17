@@ -1,26 +1,98 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{% block title %}Home{% endblock %}
+{% extends 'base.html' %} {% load static %} {% block title %}Home{% endblock %}
 {% block links_extras %}
 <link rel="stylesheet" href="{% static 'css/detalhe_produto.css' %}" />
 {% endblock %} {% block container_page %}
-<div class="container-produto">
-  <div class="produto">
-    <img src="{{ produto.imagem.url }}" alt="Imagem do Produto" />
-    <div class="info-produto">
+
+<div class="page-produto">
+  <div class="container-produto">
+    <div class="produto">
       <p class="titulo">{{ produto.titulo }}</p>
-      <p class="preco">R$ {{ produto.preco }}</p>
-      <p>Quantidade Disponível: {{ produto.quantidade }}</p>
-      <div class="content-button-ver-detalhes">
-        <a href="{% url 'detalhe-produto' produto.pk %}" class="button-ver-detalhes"
-          ><i class="fas fa-shopping-cart"></i> Comprar</a
-        >
+      <div class="content-img-info-produto">
+        <img src="{{ produto.imagem.url }}" alt="Imagem do Produto" />
+        <div class="info-produto">
+          <p class="desc-preco"><span>menor preço</span> da região</p>
+          <p class="preco">R$ {{ produto.preco }}</p>
+          <p>Quantidade Disponível: {{ produto.quantidade }}</p>
+          <div class="content-button-ver-detalhes">
+            <a
+              href="{% url 'detalhe-produto' produto.pk %}"
+              class="button-ver-detalhes"
+              ><i class="fas fa-shopping-cart"></i> Comprar</a
+            >
+          </div>
+        </div>
       </div>
     </div>
+    <div class="content-descricao">
+      <h3>Descrição</h3>
+      <p class="titulo-descricao">
+        O menor preço encontrado {{ produto.titulo }}
+      </p>
+      <p class="descricao">{{ produto.descricao }}</p>
+    </div>
   </div>
-  <div class="descricao">
-    <h3>Descricao</h3>
-    <p>{{ produto.descricao }} </p>
- </div>
+  <div class="container-info-produto">
+    {% if produto.marca or produto.modelo or produto.cor or produto.tamanho_tela %}
+    <div class="content-info-produto">
+      <h3>Informações Básicas</h3>
+      <div class="info-produto-down">
+        {% if produto.marca %}
+          <p>Marca: {{ produto.marca }}</p>
+        {% endif %}
+        {% if produto.modelo %}
+          <p>Modelo: {{ produto.modelo }}</p>
+        {% endif %}
+        {% if produto.cor %}
+          <p>Cor: {{ produto.cor }}</p>
+        {% endif %}
+        {% if produto.tamanho_tela %}
+          <p>Tamanho da Tela: {{ produto.tamanho_tela }}"</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+  
+  {% if produto.tipo_armazenamento or produto.capacidade_armazenamento or produto.ram or produto.memoria_ram_expansivel %}
+    <div class="content-info-produto">
+      <h3>Armazenamento e Memória</h3>
+      <div class="info-produto-down">
+        {% if produto.tipo_armazenamento %}
+          <p>Tipo de Armazenamento: {{ produto.tipo_armazenamento }}</p>
+        {% endif %}
+        {% if produto.capacidade_armazenamento %}
+          <p>Capacidade de Armazenamento: {{ produto.capacidade_armazenamento }}GB</p>
+        {% endif %}
+        {% if produto.ram %}
+          <p>RAM: {{ produto.ram }}GB</p>
+        {% endif %}
+        {% if produto.memoria_ram_expansivel %}
+          <p>Memória RAM Expansível: {{ produto.memoria_ram_expansivel }}GB</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+  
+  {% if produto.processador or produto.velocidade_processador or produto.sistema_operacional or produto.tipo_placa_video %}
+    <div class="content-info-produto">
+      <h3>Processamento e Desempenho Gráfico</h3>
+      <div class="info-produto-down">
+        {% if produto.processador %}
+          <p>Processador: {{ produto.processador }}</p>
+        {% endif %}
+        {% if produto.velocidade_processador %}
+          <p>Velocidade do Processador: {{ produto.velocidade_processador }}</p>
+        {% endif %}
+        {% if produto.sistema_operacional %}
+          <p>Sistema Operacional: {{ produto.sistema_operacional }}</p>
+        {% endif %}
+        {% if produto.tipo_placa_video %}
+          <p>Tipo de Placa de Vídeo: {{ produto.tipo_placa_video }}</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+  
+  </div>
 </div>
+
 {% endblock %}

@@ -18,7 +18,7 @@ def search(request):
         produtos = produtos.filter(titulo__icontains=query)
     
     if marca_query:
-        produtos = produtos.filter(marca__marca__icontains=marca_query)
+        produtos = produtos.filter(marca__marca__icontains=marca_query,categoria__categorias='Notebook')
     
     if categoria_query:
         produtos = produtos.filter(categoria__categorias__icontains=categoria_query)

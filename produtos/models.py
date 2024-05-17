@@ -1,28 +1,49 @@
 from django.db import models
-
+from . import choices
 
 
 class CategoriasModel(models.Model):
     categorias = models.CharField(max_length=50)
-    
+
     def __str__(self):
         return self.categorias
-    
+
 
 class MarcasModel(models.Model):
     marca = models.CharField(max_length=50)
-    
+
     def __str__(self):
         return self.marca
-    
+
+
 class ProdutoModel(models.Model):
     imagem = models.ImageField(upload_to='produto')
     titulo = models.CharField(max_length=200)
     preco = models.DecimalField(decimal_places=2, max_digits=6)
     descricao = models.TextField()
-    marca = models.ForeignKey(MarcasModel,on_delete=models.PROTECT)
     quantidade = models.IntegerField(default=0)
-    categoria = models.ForeignKey(CategoriasModel,on_delete=models.PROTECT)
+    categoria = models.ForeignKey(CategoriasModel, on_delete=models.PROTECT)
+
+    # Informações específicas basica do produto
+    marca = models.ForeignKey(MarcasModel, on_delete=models.PROTECT)
+    modelo = models.CharField(max_length=100, blank=True, null=True)
+    cor = models.CharField(max_length=50, blank=True, null=True)
+    sistema_operacional = models.CharField(
+        max_length=50, blank=True, null=True)
+    tipo_armazenamento = models.CharField(
+        max_length=100, blank=True, null=True)
+    capacidade_armazenamento = models.CharField(
+        max_length=50, blank=True, null=True)
+    ram = models.CharField(max_length=50, blank=True, null=True)
+    memoria_ram_expansivel = models.CharField(
+        max_length=50, blank=True, null=True)
+    tamanho_tela = models.CharField(max_length=50, blank=True, null=True)
+    processador = models.CharField(max_length=100, blank=True, null=True)
+    velocidade_processador = models.CharField(
+        max_length=50, blank=True, null=True)
+    tipo_placa_video = models.CharField(max_length=100, blank=True, null=True)
+
+    # destacar produto
     destaque = models.BooleanField(default=False)
 
     def __str__(self):

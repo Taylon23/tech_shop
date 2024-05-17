@@ -15,20 +15,46 @@
   background-color: #fff;
   border: 1px solid #bfbeb8;
   border-radius: 10px;
-  max-width: 300px;
-  min-height: 470px;
+  width: 280px;
+  min-height: 430px;
   transition: all 0.3s;
 }
 .poster:hover {
   box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.1);
 }
+.content-icon-favoritar{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px;
+  width: 100%;
+}
+
+.content-icon-favoritar i{
+  padding: 5px;
+  transition: all .3s;
+  cursor: pointer;
+}
+
+.content-icon-favoritar i:hover{
+  background-color: #eee;
+}
 .poster img {
-  max-width: 100%;
+  max-width: 90%;
+  height: 180px;
+  object-fit: cover;
   border-radius: 10px 10px 0 0;
   margin-bottom: 10px;
 }
 .info-produto {
   padding: 5px 20px;
+}
+
+.content-titulo{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100px;
 }
 
 .poster h2 {
@@ -65,7 +91,7 @@
   background-color: #171717;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .container-poster {
     display: flex;
     align-items: center;
@@ -74,7 +100,13 @@
     width: 100%;
   }
   .poster {
-    min-width: 300px;
-    min-height: 300px;
+    min-width: 280px;
+    min-height: 250px;
+  }
+  .poster img{
+    width: 200px;
+  }
+  .content-titulo{
+    margin-bottom: 2.5em;
   }
 }

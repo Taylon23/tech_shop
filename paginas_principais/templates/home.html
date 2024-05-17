@@ -11,9 +11,14 @@
 <div class="container-poster">
   {% for produto in produtos %}
   <div class="poster">
+    <div class="content-icon-favoritar">
+      <i class="far fa-heart"></i>
+    </div>
     <img src="{{ produto.imagem.url }}" alt="Imagem do Produto" />
     <div class="info-produto">
-      <p class="titulo">{{ produto.titulo }}</p>
+      <div class="content-titulo">
+        <p class="titulo">{{ produto.titulo }}</p>
+      </div>
       <p class="preco">R$ {{ produto.preco }}</p>
       <p>Quantidade Disponível: {{ produto.quantidade }}</p>
     </div>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title%}
+Signin
+{% endblock %}
+{% block links_extras %}
+<link rel="stylesheet" href="{% static 'css/form_auth.css' %}">
+{% endblock %}
+{% block container_page %}
+<div id="content">
+    <form method="post" class="form-auth">
+        {% csrf_token %}
+        <h1>Seja Bem-vindo(a)</h1>
+        <div class="form-group">
+            <label for="id_login">Usuário:</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="id_password">Senha:</label>
+            {{ form.password }}
+        </div>
+        {% if form.non_field_errors %}
+        <div class="error-message">{{ form.non_field_errors }}</div>
+        {% endif %}
+        <button type="submit">
+            <p>Logar <i class="fas fa-arrow-right"></i></p>
+        </button>
+        <div class="content-register-login">
+            <p> Logue com o sua conta do {% include "socialaccount/snippets/provider_list.html" with process="login" %}</p>
+        </div>
+    </form>
+    <img src="{% static 'img/img-auth.png' %}" alt="foto_auth_form" id="img-form">
+</div>
+{% endblock %}

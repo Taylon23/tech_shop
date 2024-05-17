@@ -1,52 +1,45 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block links_extras %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
-<link rel="stylesheet" href="{% static 'css/poster.css' %}">
-{% endblock %}
-
-{% block container_page %}
+{% extends 'base.html' %} {% load static %} {% block links_extras %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" href="{% static 'css/poster.css' %}" />
+{% endblock %} {% block container_page %}
 <div class="titulo-section">
-    
-    {% if query and produtos %}
-    <h2>Resultados da Pesquisa para "{{ query }}"</h2>
-    {% endif %}
-    {% if marca_query and produtos %}
-    <h2>Os melhores produtos "{{ marca_query }}"</h2>
-    {% endif %}
-    {% if categoria_query and produtos %}
-    <h2>Resultados da Pesquisa para "{{ categoria_query }}"</h2>
-    {% endif %}
-
-        
+  {% if query and produtos %}
+  <h2>Resultados da Pesquisa para "{{ query }}"</h2>
+  {% endif %} {% if marca_query and produtos %}
+  <h2>Os melhores produtos "{{ marca_query }}"</h2>
+  {% endif %} {% if categoria_query and produtos %}
+  <h2>Resultados da Pesquisa para "{{ categoria_query }}"</h2>
+  {% endif %}
 </div>
 <div class="container-poster">
-    {% if produtos %}
-        {% for produto in produtos %}
-        <div class="poster">
-            <img src="{{ produto.imagem.url }}" alt="Imagem do Produto">
-            <div class="info-produto">
-                <p class="titulo">{{ produto.titulo }}</p>
-                <p class="preco">R$ {{ produto.preco }}</p>
-                <p>Quantidade Disponível: {{ produto.quantidade }}</p>
-                <a href="#"><i class="fas fa-search"></i> Ver Detalhes</a>
-            </div>
-        </div>
-        {% empty %}
-        <p>Nenhum produto encontrado.</p>
-        {% endfor %}
-    {% else %}
-    {% if query %}
-    <h2>Nenhum resultado encontrado para "{{ query }}"</h2>
-    {% endif %}
-    {% if marca_query %}
-    <h2>Nenhum resultado encontrado para "{{ marca_query }}"</h2>
-    {% endif %}
-    {% if categoria_query %}
-    <h2>Nenhum resultado encontrado para "{{ categoria_query }}"</h2>
-    {% endif %}
-    {% endif %}
+  {% if produtos %} {% for produto in produtos %}
+  <div class="poster">
+    <div class="content-icon-favoritar">
+      <i class="far fa-heart"></i>
+    </div>
+    <img src="{{ produto.imagem.url }}" alt="Imagem do Produto" />
+    <div class="info-produto">
+      <p class="titulo">{{ produto.titulo }}</p>
+      <p class="preco">R$ {{ produto.preco }}</p>
+      <p>Quantidade Disponível: {{ produto.quantidade }}</p>
+    </div>
+    <div class="content-button-ver-detalhes">
+      <a
+        href="{% url 'detalhe-produto' produto.pk %}"
+        class="button-ver-detalhes"
+        ><i class="fas fa-search"></i> Ver Detalhes</a
+      >
+    </div>
+  </div>
+  {% empty %}
+  <p>Nenhum produto encontrado.</p>
+  {% endfor %} {% else %} {% if query %}
+  <h2>Nenhum resultado encontrado para "{{ query }}"</h2>
+  {% endif %} {% if marca_query %}
+  <h2>Nenhum resultado encontrado para "{{ marca_query }}"</h2>
+  {% endif %} {% if categoria_query %}
+  <h2>Nenhum resultado encontrado para "{{ categoria_query }}"</h2>
+  {% endif %} {% endif %}
 </div>
 
 {% endblock %}
