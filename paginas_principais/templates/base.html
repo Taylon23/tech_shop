@@ -76,10 +76,21 @@
                     <a href="{% url 'search' %}?categoria={{ categoria }}"><li>{{ categoria }}</li></a>
                   {% endfor %}
                   </ul>
-              </li>
-              <li>
-                
-              </li>
+              </li>      
+                {% if request.user.is_authenticated %}
+                <li class="content-pefil-link">
+                    {% if not request.user.perfilusuario.foto_perfil %}
+                        <a href="{% url 'perfil' request.user.pk %}"><i class="far fa-user user-perfil" title="Ver perfil"></i></a>
+                    {% else %}
+                        <a href="{% url 'perfil' request.user.pk %}">
+                            <img src="{{ request.user.perfilusuario.foto_perfil.url }}" class="img-perfil" alt="Foto de Perfil" title="Ver perfil">
+                        </a>
+                        <a href="{% url 'perfil' request.user.pk %}" class="perfil-mobile-list"><i class="fas fa-user"></i><p>Meu Perfil</p></a>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'signin' %}" class="logar">Logar</a>
+                  </li>
+                {% endif %}
           </ul>
       </div>
       </nav>

@@ -4,7 +4,8 @@ from . import views
 
 
 urlpatterns = [
-    path('signup/', views.signup, name="singup"),
     path('signin/', auth_views.LoginView.as_view(template_name='signin.html'), name='signin'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='form_auth.html'), name="logout"),
+    path('logout/', auth_views.LogoutView.as_view(template_name='form_auth.html'), name='logout'),
+    path('perfil/<int:id>',views.perfil,name='perfil'),
+    path('editar/perfil/<int:pk>',views.PerfilUpdateView.as_view(),name='editar-perfil')
 ]

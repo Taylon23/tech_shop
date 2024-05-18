@@ -1,0 +1,42 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Perfil{% endblock %} 
+{% block links_extras %}
+<link rel="stylesheet" href="{% static 'css/perfil.css' %}" />
+{% endblock %} 
+{% block container_page %}
+<div class="content-perfil">
+  <div class="perfil">
+    <div class="content-icon-edit">
+        <a href="{% url 'editar-perfil' perfil.pk %}"> 
+            <i class="fas fa-edit" title="Editar perfil"></i>
+        </a>
+    </div>
+    <div class="content-img-username">
+        
+        {% if perfil.foto_perfil %}
+        <img src="{{ perfil.foto_perfil.url }}" alt="" />
+        <p style="text-transform: capitalize;font-weight: bold;">{{ perfil.usuario }}</p>
+        {% else %}
+        <div class="img-perfil-none">Sem foto de perfil</div>
+        <p style="text-transform: capitalize;font-weight: bold;">{{ perfil.usuario }}</p>
+        {% endif %}
+    </div>
+    <div class="content-info-perfil">
+      <div class="info-perfil">
+        <i class="fas fa-user"></i>
+        <li style="text-transform: capitalize;">Nome: {{ perfil.nome }}</li>
+      </div>
+      <div class="info-perfil">
+        <i class="fas fa-calendar"></i>
+        <li>Data nascimento: {{ perfil.data_nascimento }}</li>
+      </div>
+      <div class="info-perfil">
+        <i class="fas fa-heart"></i>
+        <li>Favoritos</li>
+      </div>
+      <div class="info-perfil"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

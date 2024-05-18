@@ -1,5 +1,5 @@
 .page-produto{
-  padding: 15px;
+  padding: 10px;
 }
 
 .page-produto{
@@ -14,7 +14,7 @@
   justify-content: center;
   gap: 30px;
   align-items: flex-start;
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .produto {
