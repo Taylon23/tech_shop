@@ -78,6 +78,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'produtos.context_processors.categorias_produtos',
+                'usuarios.context_processors.favoritos_do_usuario',
             ],
         },
     },
@@ -156,4 +157,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-LOGIN_URL = 'signin'
+LOGIN_URL = 'login'

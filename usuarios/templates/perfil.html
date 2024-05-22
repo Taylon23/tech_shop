@@ -13,7 +13,6 @@
         </a>
     </div>
     <div class="content-img-username">
-        
         {% if perfil.foto_perfil %}
         <img src="{{ perfil.foto_perfil.url }}" alt="" />
         <p style="text-transform: capitalize;font-weight: bold;">{{ perfil.usuario }}</p>
@@ -36,6 +35,12 @@
         <li>Favoritos</li>
       </div>
       <div class="info-perfil"></div>
+    </div>
+    <div class="content-form-logout">
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
     </div>
   </div>
 </div>

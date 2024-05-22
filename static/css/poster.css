@@ -30,8 +30,14 @@
   width: 100%;
 }
 
+.button-favoritar{
+  background: transparent;
+  border: none;
+}
+
 .content-icon-favoritar i{
   padding: 5px;
+  font-size: 16px;
   transition: all .3s;
   cursor: pointer;
 }
@@ -46,6 +52,12 @@
   border-radius: 10px 10px 0 0;
   margin-bottom: 10px;
 }
+
+/* Estilo para o ícone do coração */
+.fa-heart {
+  color: #ccc; /* Cor padrão para o ícone não favorito */
+}
+
 .info-produto {
   padding: 5px 20px;
 }

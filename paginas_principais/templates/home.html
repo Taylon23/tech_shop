@@ -12,7 +12,15 @@
   {% for produto in produtos %}
   <div class="poster">
     <div class="content-icon-favoritar">
-      <i class="far fa-heart"></i>
+      {% if produto.id in favoritos_do_usuario %}
+        <button class="button-favoritar" onclick="toggleFavorite({{ produto.id }})">
+          <i class="fas fa-heart" style="color: red;"></i>
+        </button>
+      {% else %}
+        <button class="button-favoritar" onclick="toggleFavorite({{ produto.id }})">
+          <i class="fas fa-heart"></i>
+        </button>
+      {% endif %}
     </div>
     <img src="{{ produto.imagem.url }}" alt="Imagem do Produto" />
     <div class="info-produto">
@@ -31,3 +39,51 @@
   {% endfor %}
 </div>
 {% endblock %}
+
+
+{% block script %}
+<script src="{% static 'js/favoritar-icon-color.js' %}"></script>
+<script>
+  function toggleFavorite(produtoId) {
+  $.ajax({
+    url: '/user/favoritar/' + produtoId + '/',
+    type: 'POST',
+    data: {
+      'produto_id': produtoId,
+      'csrfmiddlewaretoken': '{{ csrf_token }}'
+    },
+    success: function(response) {
+      var button = $('[onclick="toggleFavorite(' + produtoId + ')"]');
+      var heartIcon = button.find('.fa-heart');
+      
+      if (response.status === 'added') {
+        // Adiciona a classe 'favorite' ao botão
+        button.addClass('favorite');
+        heartIcon.css('color', 'red'); // Altera a cor do ícone para vermelho
+        alert('Produto adicionado aos favoritos!');
+      } else if (response.status === 'removed') {
+        // Remove a classe 'favorite' do botão
+        button.removeClass('favorite');
+        heartIcon.css('color', '#ccc'); // Altera a cor do ícone para a cor padrão
+        alert('Produto removido dos favoritos!');
+      }
+    },
+    error: function(xhr, status, error) {
+      if (xhr.status == 403) {
+        // 403 indica que a solicitação falhou devido à falta de autenticação
+        var confirmLogin = confirm('Você precisa estar logado para favoritar o produto. Clique em OK para ir para a página de login.');
+
+        if (confirmLogin) {
+          window.location.href = '/user/signin/';
+        }
+      } else {
+        // Outro erro que não seja 403
+        alert('Ocorreu um erro ao tentar favoritar o produto.');
+      }
+    }
+  });
+}
+
+</script>
+{% endblock %}
+  

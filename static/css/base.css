@@ -35,7 +35,7 @@ body {
   text-decoration: none;
 }
 
-.user-perfil {
+.user-perfil{
   font-size: 24px;
   transition: all 0.3s ease;
 }
@@ -48,6 +48,11 @@ body {
   height: 50px;
   border-radius: 50%;
   object-fit:cover;
+  transition: all .3s;
+}
+
+.img-perfil:hover{
+  border-radius: 20%;
 }
 
 .perfil-mobile-list{
@@ -61,12 +66,15 @@ body {
 .logar{
   color: #fff;
   text-decoration: none;
-  padding: 10px;
+  border: solid 1px #0056b3;
+  border-radius: 8px;
+  padding: 5px 10px;
   transition: all .3s;
 }
 
 .logar:hover {
-  color: #007bff !important;
+  color: #fff !important;
+  background-color: #0056b3;
 }
 
 .bar_pesquisa,
@@ -220,9 +228,10 @@ body {
 .menu-toggle {
   display: none; /* Oculta o botão em dispositivos maiores */
 }
+
 @media (max-width: 850px) {
 
-  .img-perfil{
+  .user-perfil{
     display: none;
   }
   .perfil-mobile-list{
@@ -290,5 +299,12 @@ body {
   .sub-menu-list {
     left: 0;
     width: 100% !important;
+  }
+
+  .logar{
+    border: none;
+  }
+  .logar:hover{
+    background: none;
   }
 }

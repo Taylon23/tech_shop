@@ -6,10 +6,16 @@ from datetime import date
 from . import models
     
     
+
 class UpdatePerfilForm(forms.ModelForm):
     class Meta:
         model = models.PerfilUsuario
         fields = ['nome', 'data_nascimento', 'foto_perfil']
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'foto_perfil': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+        }
+        
 
     def clean_data_nascimento(self):
         data_nascimento = self.cleaned_data['data_nascimento']

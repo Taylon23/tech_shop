@@ -19,23 +19,23 @@
   padding: 10px;
 }
 
-.content-icon-edit{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+.content-icon-edit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-.content-icon-edit a{
-    color: initial;
+.content-icon-edit a {
+  color: initial;
 }
 
-.fa-edit{
-    transition: all .3s;
+.fa-edit {
+  transition: all 0.3s;
 }
 
-.fa-edit:hover{
-    color: #464646;
+.fa-edit:hover {
+  color: #464646;
 }
 
 .content-img-username {
@@ -51,41 +51,75 @@
   height: 250px;
   border-radius: 50%;
   object-fit: cover;
-  transition: all .3s;
+  transition: all 0.3s;
   cursor: pointer;
 }
 
-.content-img-username img:hover{
-    filter: brightness(80%);
-    transform: scale(1.02);
+.content-img-username img:hover {
+  filter: brightness(80%);
+  transform: scale(1.02);
 }
 
-.img-perfil-none{
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background-color: #5d5d5d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
+.img-perfil-none {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: #5d5d5d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 
 .content-info-perfil {
-width: 100%;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
 }
 .info-perfil {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    margin-bottom: 15px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
-.info-perfil i{
-    font-size: 18px;
+.info-perfil i {
+  font-size: 18px;
+}
+
+.content-form-logout{
+  width: 100%;
+}
+
+.content-form-logout button {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #e8452b;
+  color: #fff;
+  padding: 0.9375em 1.5625em;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+  font-size: 1.125em;
+  width: 100%;
+  margin: 0.3em 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.content-form-logout button:hover {
+  opacity: 90%;
+}
+
+@media (max-width: 850px) {
+  .img-perfil-none{
+    width: 150px;
+    height: 150px;
+  }
+  .perfil{
+    width: 100%;
+  }
 }

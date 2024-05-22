@@ -41,5 +41,8 @@
   <h2>Nenhum resultado encontrado para "{{ categoria_query }}"</h2>
   {% endif %} {% endif %}
 </div>
+{% endblock %}
 
+{% block script %}
+<script src="{% static 'js/favoritar.js' %}"></script>
 {% endblock %}

@@ -80,15 +80,15 @@
                 {% if request.user.is_authenticated %}
                 <li class="content-pefil-link">
                     {% if not request.user.perfilusuario.foto_perfil %}
-                        <a href="{% url 'perfil' request.user.pk %}"><i class="far fa-user user-perfil" title="Ver perfil"></i></a>
+                        <a href="{% url 'perfil' request.user.perfilusuario.pk %}"><i class="far fa-user user-perfil" title="Ver perfil"></i></a>
                     {% else %}
-                        <a href="{% url 'perfil' request.user.pk %}">
+                        <a href="{% url 'perfil' request.user.perfilusuario.pk %}">
                             <img src="{{ request.user.perfilusuario.foto_perfil.url }}" class="img-perfil" alt="Foto de Perfil" title="Ver perfil">
                         </a>
-                        <a href="{% url 'perfil' request.user.pk %}" class="perfil-mobile-list"><i class="fas fa-user"></i><p>Meu Perfil</p></a>
                     {% endif %}
+                    <a href="{% url 'perfil' request.user.perfilusuario.pk %}" class="perfil-mobile-list"><i class="fas fa-user"></i><p>Meu Perfil</p></a>
                 {% else %}
-                    <a href="{% url 'signin' %}" class="logar">Logar</a>
+                    <a href="{% url 'login' %}" class="logar">Logar</a>
                   </li>
                 {% endif %}
           </ul>
@@ -133,6 +133,7 @@
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
   <script src="{% static 'js/menu_toggle.js' %}"></script>
   {% block script %} {% endblock %}
 </html>
