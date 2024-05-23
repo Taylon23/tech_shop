@@ -24,15 +24,15 @@
     <div class="content-info-perfil">
       <div class="info-perfil">
         <i class="fas fa-user"></i>
-        <li style="text-transform: capitalize;">Nome: {{ perfil.nome }}</li>
+        <p style="text-transform: capitalize;">Nome: {{ perfil.nome }}</p>
       </div>
       <div class="info-perfil">
         <i class="fas fa-calendar"></i>
-        <li>Data nascimento: {{ perfil.data_nascimento }}</li>
+        <p>Data nascimento: {{ perfil.data_nascimento }}</p>
       </div>
       <div class="info-perfil">
         <i class="fas fa-heart"></i>
-        <li>Favoritos</li>
+        <a href="{% url 'list-favorito-produto' %}">Favoritos</a>
       </div>
       <div class="info-perfil"></div>
     </div>

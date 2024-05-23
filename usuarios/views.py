@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 from .forms import UpdatePerfilForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,7 +7,6 @@ from django.views.generic import UpdateView
 from . import models
 from django.http import JsonResponse
 from produtos import models as model_produto
-
 
 
 @login_required
@@ -36,22 +35,26 @@ class PerfilUpdateView(LoginRequiredMixin, UpdateView):
         perfil = self.get_object()
         initial['data_nascimento'] = perfil.data_nascimento
         return initial
-    
-@login_required(login_url='login')
+
+
 def favoritar_produto(request, produto_id):
-    if request.method == 'POST':
-        produto = get_object_or_404(model_produto.ProdutoModel, id=produto_id)
-        user = request.user
+    produto = get_object_or_404(model_produto.ProdutoModel, pk=produto_id)
 
-        # Verifica se o produto já está favoritado pelo usuário
-        favorito, created = models.Favorito.objects.get_or_create(usuario=user, produto=produto)
-
+    if request.user.is_authenticated:
+        favorito, created = models.Favorito.objects.get_or_create(
+            usuario=request.user, produto=produto)
         if not created:
-            # Se já estiver favoritado, remove dos favoritos
             favorito.delete()
             return JsonResponse({'status': 'removed'})
         else:
-            return JsonResponse({'status': 'added'})
+            return JsonResponse({'status': 'ok', 'favoritado': True})
+    else:
+        login_url = reverse('login')  # Obtém a URL de login
+        return JsonResponse({'status': 'error', 'message': 'Usuário não autenticado', 'login_url': login_url})
 
-    return JsonResponse({'status': 'error'}, status=400)
 
+@login_required(login_url='login')
+def list_favoritos(request):
+    list_favoritar_produto = models.Favorito.objects.filter(usuario=request.user)
+     
+    return render(request,'list-favoritos.html',{'lista_favoritos':list_favoritar_produto})

@@ -1,43 +1,52 @@
 {% extends 'base.html' %} 
 {% load static %} 
-{% block title %}Home{% endblock %}
+{% block title %}Favoritos{% endblock %}
 {% block links_extras %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 <link rel="stylesheet" href="{% static 'css/poster.css' %}" />
 {% endblock %} {% block container_page %}
+
+{% if lista_favoritos %}
 <div class="titulo-section">
-  <h1>Lorem ipsum dolor</h1>
-</div>
-<div class="container-poster">
-  {% for produto in produtos %}
-  <div class="poster">
-    <div class="content-icon-favoritar">
-      {% if produto.id in favoritos_do_usuario %}
-        <button class="button-favoritar" onclick="toggleFavorite({{ produto.id }})">
-          <i class="fas fa-heart" style="color: red;"></i>
-        </button>
-      {% else %}
-        <button class="button-favoritar" onclick="toggleFavorite({{ produto.id }})">
-          <i class="fas fa-heart"></i>
-        </button>
-      {% endif %}
-    </div>
-    <img src="{{ produto.imagem.url }}" alt="Imagem do Produto" />
-    <div class="info-produto">
-      <div class="content-titulo">
-        <p class="titulo">{{ produto.titulo }}</p>
-      </div>
-      <p class="preco">R$ {{ produto.preco }}</p>
-      <p>Quantidade Disponível: {{ produto.quantidade }}</p>
-    </div>
-    <div class="content-button-ver-detalhes">
-      <a href="{% url 'detalhe-produto' produto.pk %}" class="button-ver-detalhes"
-        ><i class="fas fa-search"></i> Ver Detalhes</a
-      >
-    </div>
+    <h1>Meus Favoritos</h1>
   </div>
-  {% endfor %}
-</div>
+  <div class="container-poster">
+    {% for favorito in lista_favoritos %}
+    <div class="poster">
+      <div class="content-icon-favoritar">
+        {% if favorito.produto.id in favoritos_do_usuario %}
+          <button class="button-favoritar" onclick="toggleFavorite({{ favorito.produto.id }})">
+            <i class="fas fa-heart" style="color: red;"></i>
+          </button>
+        {% else %}
+          <button class="button-favoritar" onclick="toggleFavorite({{ favorito.produto.id }})">
+            <i class="fas fa-heart"></i>
+          </button>
+        {% endif %}
+      </div>
+      <img src="{{ favorito.produto.imagem.url }}" alt="Imagem do Produto" />
+      <div class="info-produto">
+        <div class="content-titulo">
+          <p class="titulo">{{ favorito.produto.titulo }}</p>
+        </div>
+        <p class="preco">R$ {{ favorito.produto.preco }}</p>
+        <p>Quantidade Disponível: {{ favorito.produto.quantidade }}</p>
+      </div>
+      <div class="content-button-ver-detalhes">
+        <a href="{% url 'detalhe-produto' favorito.produto.pk %}" class="button-ver-detalhes"
+          ><i class="fas fa-search"></i> Ver Detalhes</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% else %}
+<div class="titulo-section">
+    <h1 style="text-align: center;">Sem Favoritos</h1>
+  </div>
+{% endif %} 
+
+
 {% endblock %}
 
 

@@ -9,4 +9,6 @@ urlpatterns = [
     path('perfil/<int:id>',views.perfil,name='perfil'),
     path('editar/perfil/<int:id>',views.PerfilUpdateView.as_view(),name='editar-perfil'),
     path('favoritar/<int:produto_id>/', views.favoritar_produto, name='favoritar-produto'),
+    path('list/favoritos/', views.list_favoritos, name='list-favorito-produto'),
+    
 ]
