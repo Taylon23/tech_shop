@@ -16,11 +16,9 @@
           <p class="preco">R$ {{ produto.preco }}</p>
           <p>Quantidade Disponível: {{ produto.quantidade }}</p>
           <div class="content-button-ver-detalhes">
-            <a
-              href="{% url 'detalhe-produto' produto.pk %}"
-              class="button-ver-detalhes"
-              ><i class="fas fa-shopping-cart"></i> Comprar</a
-            >
+            <a href="{{ whatsapp_url }}" class="button-ver-detalhes" target="_blank">
+              <i class="fas fa-shopping-cart"></i> Comprar
+          </a>
           </div>
         </div>
       </div>

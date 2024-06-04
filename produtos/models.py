@@ -1,5 +1,7 @@
 from django.db import models
 from . import choices
+from django.urls import reverse
+from django.utils.http import urlencode
 
 
 class CategoriasModel(models.Model):
@@ -45,6 +47,17 @@ class ProdutoModel(models.Model):
 
     # destacar produto
     destaque = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse('detalhe-produto', args=[self.id])
+    
+    # API do whatsapp para mandar mensagem do produto para o vendendor
+    def whatsapp_url(self, request):
+        numero = '98991730451'
+        produto_url = request.build_absolute_uri(self.get_absolute_url())
+        mensagem = f'Estou interessado no seguinte produto: {produto_url}'
+        params = urlencode({'phone': numero, 'text': mensagem})
+        return f'https://api.whatsapp.com/send?{params}'
 
     def __str__(self):
         return self.titulo
