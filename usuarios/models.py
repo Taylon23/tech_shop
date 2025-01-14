@@ -7,15 +7,17 @@ class PerfilUsuario(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=100)
     data_nascimento = models.DateField()
-    foto_perfil = models.ImageField(upload_to='perfil/', null=True, blank=True)
+    foto_perfil = models.ImageField(
+        upload_to='perfil/', null=True, blank=True, default="perfil/default_photo.webp")
 
     def __str__(self):
         return self.usuario.username
-    
-         
+
+
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    produto = models.ForeignKey(model_produto.ProdutoModel, on_delete=models.CASCADE)
+    produto = models.ForeignKey(
+        model_produto.ProdutoModel, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

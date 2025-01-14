@@ -17,8 +17,7 @@
         <img src="{{ perfil.foto_perfil.url }}" alt="" />
         <p style="text-transform: capitalize;font-weight: bold;">{{ perfil.usuario }}</p>
         {% else %}
-        <div class="img-perfil-none">Sem foto de perfil</div>
-        <p style="text-transform: capitalize;font-weight: bold;">{{ perfil.usuario }}</p>
+        <img src="/media/perfil/default_photo.webp" class="img-perfil" alt="">
         {% endif %}
     </div>
     <div class="content-info-perfil">

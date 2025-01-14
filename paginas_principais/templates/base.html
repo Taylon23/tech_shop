@@ -80,7 +80,7 @@
                 {% if request.user.is_authenticated %}
                 <li class="content-pefil-link">
                     {% if not request.user.perfilusuario.foto_perfil %}
-                        <a href="{% url 'perfil' request.user.perfilusuario.pk %}"><i class="far fa-user user-perfil" title="Ver perfil"></i></a>
+                        <a href="{% url 'perfil' request.user.perfilusuario.pk %}"><img src="/media/perfil/default_photo.webp" class="img-perfil" alt=""></a>
                     {% else %}
                         <a href="{% url 'perfil' request.user.perfilusuario.pk %}">
                             <img src="{{ request.user.perfilusuario.foto_perfil.url }}" class="img-perfil" alt="Foto de Perfil" title="Ver perfil">
